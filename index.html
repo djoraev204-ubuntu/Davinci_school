@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Da Vinci School | Kelajak Muhandislari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 1. ASOSIY FON VA GRADIENT ANIMATSIYASI */
+        /* 1. UMUMIY SOZLAMALAR */
         * {
             margin: 0;
             padding: 0;
@@ -15,10 +16,10 @@
         }
 
         body {
-            /* Suratdagi kabi juda yorqin gradient fon */
+            /* Harakatlanuvchi yorqin gradient fon */
             background: linear-gradient(-45deg, #4facfe, #00f2fe, #f093fb, #f5576c, #43e97b);
             background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -31,15 +32,15 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 2. LOGOTIP VA MARKAZIY QISM */
+        /* 2. LOGOTIP VA MARKAZIY QISM (HERO) */
         .hero {
-            height: 85vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .logo-box {
@@ -50,7 +51,7 @@
         }
 
         .logo-text {
-            font-size: 6rem;
+            font-size: 6rem; /* Kompyuter uchun katta o'lcham */
             font-weight: 900;
             line-height: 0.85;
             letter-spacing: -2px;
@@ -62,7 +63,7 @@
             text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.4);
         }
 
-        /* SCHOOL - Har bir harf alohida rangda */
+        /* SCHOOL - Rang-barang harflar */
         .school {
             font-size: 5rem;
             text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
@@ -74,18 +75,18 @@
         .o-green { color: #32CD32; }
         .l-red { color: #FF4D4D; }
 
-        /* Lampa va Probel (masofa) */
+        /* Lampa va Probel */
         .bulb-icon {
             font-size: 5.5rem;
             position: absolute;
             top: -60px;
-            right: -100px; /* Lampa va yozuv orasidagi masofa */
+            right: -110px; /* Lampa va matn orasidagi masofa */
             animation: glow 2s ease-in-out infinite alternate;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-25px); }
+            50% { transform: translateY(-20px); }
         }
 
         @keyframes glow {
@@ -97,30 +98,29 @@
         .shior {
             background: rgba(255, 255, 255, 0.25);
             border: 2px solid white;
-            padding: 15px 55px;
+            padding: 15px 40px;
             border-radius: 50px;
             color: white;
             font-size: 1.4rem;
             backdrop-filter: blur(10px);
             margin-bottom: 35px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            max-width: 850px;
+            max-width: 90%;
             font-weight: 500;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .btn {
-            background: #FF4D4D; /* Yorqin qizil */
+            background: #FF4D4D;
             color: white;
-            padding: 20px 55px;
+            padding: 20px 50px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             box-shadow: 0 15px 35px rgba(255, 77, 77, 0.5);
             transition: 0.3s;
             text-transform: uppercase;
             border: 3px solid white;
-            display: inline-block;
         }
 
         .btn:hover {
@@ -129,51 +129,65 @@
             color: #FF4D4D;
         }
 
-        /* 4. KURSLAR SECTION (QORA FON) */
+        /* 4. MOBIL VA PLANSHET UCHUN MOSLASHUVCHANLIK (RESPONSIVE) */
+        @media (max-width: 1024px) {
+            .logo-text { font-size: 4.5rem; }
+            .school { font-size: 3.5rem; }
+            .bulb-icon { font-size: 4rem; right: -70px; top: -40px; }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text { font-size: 3.5rem; }
+            .school { font-size: 2.8rem; }
+            .bulb-icon { font-size: 3rem; right: -50px; top: -30px; }
+            .shior { font-size: 1.1rem; padding: 12px 25px; }
+            .btn { padding: 15px 35px; font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text { font-size: 2.8rem; }
+            .school { font-size: 2.2rem; }
+            .bulb-icon { font-size: 2.5rem; right: -40px; top: -25px; }
+            .logo-box { margin-bottom: 25px; }
+        }
+
+        /* 5. KURSLAR BO'LIMI (QORA FON) */
         .courses-section {
             background: #121214;
-            padding: 100px 20px;
+            padding: 80px 20px;
             color: white;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
             background: white;
-            border-radius: 25px;
-            padding: 40px 25px;
+            border-radius: 20px;
+            padding: 40px 20px;
             color: #333;
-            border-bottom: 12px solid;
-            transition: 0.4s;
+            border-bottom: 10px solid;
+            transition: 0.3s;
             text-align: center;
         }
 
-        .card:hover { 
-            transform: translateY(-20px);
-            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
-        }
-
+        .card:hover { transform: translateY(-15px); }
         .wedo { border-color: #00BFFF; }
         .ev3 { border-color: #FF4D4D; }
         .arduino { border-color: #32CD32; }
         .modeling { border-color: #FF8C00; }
 
-        .card h3 { font-size: 1.7rem; margin-bottom: 10px; }
-        .card p { font-size: 1rem; color: #666; }
-
-        /* 5. FOOTER */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px;
             background: #0a0a0b;
-            color: #777;
-            font-size: 1rem;
+            color: #888;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -190,7 +204,7 @@
             </div>
         </div>
         
-        <div class="shior"><b>G'oyalarni kodga, tasavvurni robotga aylantiring! 🤖⚡</b></div>
+        <div class="shior">G'oyalarni kodga, tasavvurni robotga aylantiring! 🤖⚡</div>
         
         <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">O'z o'rningni band qil!</a>
     </header>
@@ -198,30 +212,30 @@
     <section class="courses-section" id="kurslar">
         <div class="grid">
             <div class="card wedo">
-                <div style="font-size: 50px; margin-bottom: 15px;">🧱</div>
+                <div style="font-size: 45px; margin-bottom: 10px;">🧩</div>
                 <h3>WeDo 2.0</h3>
-                <p>Kichik yoshli muhandislar uchun qiziqarli Lego darslari.</p>
+                <p>Kichik muhandislar uchun robototexnika asosi.</p>
             </div>
             <div class="card ev3">
-                <div style="font-size: 50px; margin-bottom: 15px;">🤖</div>
+                <div style="font-size: 45px; margin-bottom: 10px;">🤖</div>
                 <h3>Mindstorms EV3</h3>
-                <p>Murakkab mantiq va haqiqiy robotlar olami.</p>
+                <p>Murakkab robotlar va mantiqiy dasturlash.</p>
             </div>
             <div class="card arduino">
-                <div style="font-size: 50px; margin-bottom: 15px;">🔌</div>
+                <div style="font-size: 45px; margin-bottom: 10px;">🔋</div>
                 <h3>Arduino Basic</h3>
-                <p>Elektronika va C++ dasturlash asoslari.</p>
+                <p>Elektronika va sxemalar yaratish san'ati.</p>
             </div>
             <div class="card modeling">
-                <div style="font-size: 50px; margin-bottom: 15px;">💻</div>
+                <div style="font-size: 45px; margin-bottom: 10px;">📐</div>
                 <h3>3D Modelling</h3>
-                <p>Virtual loyihalash va 3D modellar yaratish.</p>
+                <p>Virtual modellarni hayotga tatbiq eting.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        &copy; 2026 Da Vinci School | Biz bilan kelajakni bugun quring!
+        &copy; 2026 Da Vinci School | Biz bilan kelajakni bugun yarating!
     </footer>
 
 </body>
