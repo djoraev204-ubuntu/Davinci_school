@@ -3,240 +3,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Da Vinci School | Kelajak Muhandislari</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>Da Vinci School - Robototexnika Kurslari</title>
     <style>
-        /* 1. UMUMIY SOZLAMALAR */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
-            /* Harakatlanuvchi yorqin gradient fon */
-            background: linear-gradient(-45deg, #4facfe, #00f2fe, #f093fb, #f5576c, #43e97b);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c1f 0%, #1a1a2f 50%, #16213e 100%);
+            color: #fff;
             overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* 2. LOGOTIP VA MARKAZIY QISM (HERO) */
-        .hero {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .logo-box {
             position: relative;
-            margin-bottom: 40px;
-            animation: float 4s ease-in-out infinite;
-            display: inline-block;
         }
 
-        .logo-text {
-            font-size: 6rem; /* Kompyuter uchun katta o'lcham */
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -2px;
+        /* Noodatiy animatsion fon */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        /* Da Vinci - Ko'k rang */
-        .da-vinci {
-            color: #007bff;
-            text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.4);
-        }
-
-        /* SCHOOL - Rang-barang harflar */
-        .school {
-            font-size: 5rem;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-        }
-
-        .s-red { color: #FF4D4D; }
-        .c-blue { color: #007bff; }
-        .h-orange { color: #FF8C00; }
-        .o-green { color: #32CD32; }
-        .l-red { color: #FF4D4D; }
-
-        /* Lampa va Probel */
-        .bulb-icon {
-            font-size: 5.5rem;
+        .floating-shape {
             position: absolute;
-            top: -60px;
-            right: -110px; /* Lampa va matn orasidagi masofa */
-            animation: glow 2s ease-in-out infinite alternate;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
         }
+
+        .shape1 { top: -100px; left: -100px; animation-delay: 0s; }
+        .shape2 { top: 30%; right: -100px; width: 400px; height: 400px; animation-delay: -3s; }
+        .shape3 { bottom: -150px; left: 20%; width: 350px; height: 350px; animation-delay: -6s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, 50px) scale(1.2); }
+            66% { transform: translate(-30px, -30px) scale(0.9); }
         }
 
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 5px #ffd700); }
-            to { filter: drop-shadow(0 0 40px #ffd700); }
+        /* Asosiy container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
         }
 
-        /* 3. SHIOR VA TUGMA */
-        .shior {
-            background: rgba(255, 255, 255, 0.25);
-            border: 2px solid white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            color: white;
-            font-size: 1.4rem;
+        /* Header qismi - KATTALASHTIRILGAN */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            margin-bottom: 35px;
-            max-width: 90%;
-            font-weight: 500;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 60px;
+            margin-bottom: 3rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 1s ease;
         }
 
-        .btn {
-            background: #FF4D4D;
-            color: white;
-            padding: 20px 50px;
-            border-radius: 50px;
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Logo rasm qismi */
+        .logo-image {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 90px;
+            width: auto;
+            max-width: 300px;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 20px rgba(72,219,251,0.8));
+        }
+
+        .logo-img:hover {
+            transform: scale(1.08) rotate(2deg);
+            filter: drop-shadow(0 0 35px rgba(255,107,107,0.9));
+        }
+
+        /* Navigatsiya menyusi - KATTALASHTIRILGAN */
+        nav ul {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #fff;
             text-decoration: none;
-            font-weight: 900;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.15);
+            box-shadow: 0 0 40px rgba(72,219,251,0.7);
+        }
+
+        /* Button - KATTALASHTIRILGAN */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
             font-size: 1.2rem;
-            box-shadow: 0 15px 35px rgba(255, 77, 77, 0.5);
-            transition: 0.3s;
-            text-transform: uppercase;
-            border: 3px solid white;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255,107,107,0.5);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             transform: scale(1.1);
-            background: white;
-            color: #FF4D4D;
+            box-shadow: 0 0 40px rgba(255,107,107,0.9);
         }
 
-        /* 4. MOBIL VA PLANSHET UCHUN MOSLASHUVCHANLIK (RESPONSIVE) */
-        @media (max-width: 1024px) {
-            .logo-text { font-size: 4.5rem; }
-            .school { font-size: 3.5rem; }
-            .bulb-icon { font-size: 4rem; right: -70px; top: -40px; }
-        }
-
-        @media (max-width: 768px) {
-            .logo-text { font-size: 3.5rem; }
-            .school { font-size: 2.8rem; }
-            .bulb-icon { font-size: 3rem; right: -50px; top: -30px; }
-            .shior { font-size: 1.1rem; padding: 12px 25px; }
-            .btn { padding: 15px 35px; font-size: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            .logo-text { font-size: 2.8rem; }
-            .school { font-size: 2.2rem; }
-            .bulb-icon { font-size: 2.5rem; right: -40px; top: -25px; }
-            .logo-box { margin-bottom: 25px; }
-        }
-
-        /* 5. KURSLAR BO'LIMI (QORA FON) */
-        .courses-section {
-            background: #121214;
-            padding: 80px 20px;
-            color: white;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 20px;
-            color: #333;
-            border-bottom: 10px solid;
-            transition: 0.3s;
+        /* Hero section - KATTALASHTIRILGAN */
+        .hero {
             text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        .card:hover { transform: translateY(-15px); }
-        .wedo { border-color: #00BFFF; }
-        .ev3 { border-color: #FF4D4D; }
-        .arduino { border-color: #32CD32; }
-        .modeling { border-color: #FF8C00; }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(255,107,107,0.3);
+            animation: glowText 2s ease-in-out infinite alternate;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
 
+        @keyframes glowText {
+            from { text-shadow: 0 0 40px rgba(255,107,107,0.5); }
+            to { text-shadow: 0 0 80px rgba(72,219,251,0.8); }
+        }
+
+        .hero p {
+            font-size: 1.7rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.5s both;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Kurslar grid - KATTALASHTIRILGAN */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+
+        /* Kurs kartasi - KATTALASHTIRILGAN */
+        .course-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+            animation: cardAppear 0.8s ease backwards;
+        }
+
+        .course-card:nth-child(1) { animation-delay: 0.2s; }
+        .course-card:nth-child(2) { animation-delay: 0.4s; }
+        .course-card:nth-child(3) { animation-delay: 0.6s; }
+        .course-card:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: scale(0.8) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .course-card:hover {
+            transform: translateY(-25px) scale(1.03);
+            border-color: #48dbfb;
+            box-shadow: 0 0 60px rgba(72,219,251,0.6);
+        }
+
+        /* Rasm maydoni - KATTALASHTIRILGAN */
+        .card-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1a1a2f, #16213e);
+            padding: 1.5rem;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+        }
+
+        .course-card:hover .card-image img {
+            transform: scale(1.25) rotate(6deg);
+        }
+
+        /* Card content - KATTALASHTIRILGAN */
+        .card-content {
+            padding: 2.2rem;
+        }
+
+        .card-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(45deg, #feca57, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-content p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* Kursga xos rangli hover effektlar */
+        .course-card[data-course="wedo"]:hover { box-shadow: 0 0 60px rgba(254,202,87,0.7); }
+        .course-card[data-course="ev3"]:hover { box-shadow: 0 0 60px rgba(72,219,251,0.7); }
+        .course-card[data-course="arduino"]:hover { box-shadow: 0 0 60px rgba(72,219,251,0.7); }
+        .course-card[data-course="3d"]:hover { box-shadow: 0 0 60px rgba(255,159,243,0.7); }
+
+        /* Statistika bo'limi - KATTALASHTIRILGAN */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin: 6rem 0;
+            padding: 3.5rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 70px;
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: statPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #feca57, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Footer - KATTALASHTIRILGAN */
         footer {
             text-align: center;
-            padding: 30px;
-            background: #0a0a0b;
-            color: #888;
-            font-size: 0.9rem;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 70px;
+            border: 3px solid rgba(255,255,255,0.1);
+            font-size: 1.2rem;
         }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1rem 1.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo-img {
+                height: 70px;
+                max-width: 240px;
+            }
+            
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-label {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 60px;
+                max-width: 200px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul li a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .card-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            .card-content p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Qo'shimcha animatsiyalar */
+        .floating-robot {
+            position: absolute;
+            font-size: 4rem;
+            animation: floatRobot 12s linear infinite;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        @keyframes floatRobot {
+            from { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+        }
+
+        .robot1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .robot2 { top: 60%; right: 15%; animation-delay: -3s; }
+        .robot3 { bottom: 10%; left: 20%; animation-delay: -6s; }
     </style>
 </head>
 <body>
+    <!-- Noodatiy animatsion fon -->
+    <div class="animated-bg">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+    </div>
 
-    <header class="hero">
-        <div class="logo-box">
-            <div class="bulb-icon">💡</div>
-            <div class="logo-text">
-                <span class="da-vinci">Da Vinci</span><br>
-                <div class="school">
-                    <span class="s-red">S</span><span class="c-blue">C</span><span class="h-orange">H</span><span class="o-green">O</span><span class="o-green">O</span><span class="l-red">L</span>
+    <!-- Floating robot emojilari -->
+    <div class="floating-robot robot1">🤖</div>
+    <div class="floating-robot robot2">⚡</div>
+    <div class="floating-robot robot3">🔧</div>
+
+    <div class="container">
+        <!-- Header - Telegram link bilan -->
+        <header>
+            <div class="logo-image">
+                <img src="freepik-da-vinci-school-20250617072302Lor3.png" 
+                     alt="Da Vinci School Logo" 
+                     class="logo-img"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/300x90/1a1a2f/48dbfb?text=Da+Vinci+School&font=orbitron'">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Bosh sahifa</a></li>
+                    <li><a href="#">Kurslar</a></li>
+                    <li><a href="#">Narxlar</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
+            </nav>
+            <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">Ro'yxatdan o'tish</a>
+        </header>
+
+        <!-- Hero section -->
+        <section class="hero">
+            <h1>KELAJAK ROBOTLARI</h1>
+            <p>Robototexnika kurslarida zamonaviy texnologiyalarni o'rganing va o'z qo'llaringiz bilan robotlar yarating!</p>
+        </section>
+
+        <!-- Kurslar grid - Telegram link bilan -->
+        <div class="courses-grid">
+            <!-- WeDo 2.0 -->
+            <div class="course-card" data-course="wedo">
+                <div class="card-image">
+                    <img src="lg-what-do-you-think-about-lego-weDo.jpg" 
+                         alt="LEGO WeDo 2.0 Robot" 
+                         style="width:100%; height:100%; object-fit:contain;"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/feca57/333?text=WeDo+2.0&font=orbitron'">
+                </div>
+                <div class="card-content">
+                    <h3>WeDo 2.0</h3>
+                    <p>LEGO WeDo 2.0 - boshlang'ich yoshdagi bolalar uchun mo'ljallangan robototexnika to'plami. Blokli dasturlash orqali oddiy robotlar yaratish.</p>
+                    <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">Batafsil</a>
+                </div>
+            </div>
+
+            <!-- EV3 Mindstorms -->
+            <div class="course-card" data-course="ev3">
+                <div class="card-image">
+                    <img src="lego-mindstorms_360x203x2_card.jpg" 
+                         alt="LEGO Mindstorms EV3 Robot" 
+                         style="width:100%; height:100%; object-fit:contain;"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/48dbfb/333?text=EV3+Mindstorms&font=orbitron'">
+                </div>
+                <div class="card-content">
+                    <h3>EV3 Mindstorms</h3>
+                    <p>LEGO Mindstorms EV3 - murakkab robotlar yaratish uchun professional to'plam. Sensorlar, motorlar va dasturlash asoslari.</p>
+                    <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">Batafsil</a>
+                </div>
+            </div>
+
+            <!-- Arduino Basics -->
+            <div class="course-card" data-course="arduino">
+                <div class="card-image">
+                    <img src="children-making-robot.jpg" 
+                         alt="Arduino Microcontroller" 
+                         style="width:100%; height:100%; object-fit:contain;"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/ff9ff3/333?text=Arduino+Basics&font=orbitron'">
+                </div>
+                <div class="card-content">
+                    <h3>Arduino Basics</h3>
+                    <p>Arduino platformasida elektronika va dasturlash asoslari. Sensorlar, LEDlar va motorlar bilan ishlash.</p>
+                    <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">Batafsil</a>
+                </div>
+            </div>
+
+            <!-- 3D Modeling -->
+            <div class="course-card" data-course="3d">
+                <div class="card-image">
+                    <img src="3d-printer-with-filament-spools.jpg" 
+                         alt="3D Printer" 
+                         style="width:100%; height:100%; object-fit:contain;"
+                         onerror="this.onerror=null; this.src='https://via.placeholder.com/300x200/ff6b6b/333?text=3D+Printer&font=orbitron'">
+                </div>
+                <div class="card-content">
+                    <h3>3D Modelling</h3>
+                    <p>3D modellashtirish asoslari. Tinkercad va Fusion 360 dasturlarida robot detallarini yaratish va 3D printerda chop etish.</p>
+                    <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">Batafsil</a>
                 </div>
             </div>
         </div>
-        
-        <div class="shior">G'oyalarni kodga, tasavvurni robotga aylantiring! 🤖⚡</div>
-        
-        <a href="https://t.me/da_vinci_manager" target="_blank" class="btn">O'z o'rningni band qil!</a>
-    </header>
 
-    <section class="courses-section" id="kurslar">
-        <div class="grid">
-            <div class="card wedo">
-                <div style="font-size: 45px; margin-bottom: 10px;">🧩</div>
-                <h3>WeDo 2.0</h3>
-                <p>Kichik muhandislar uchun robototexnika asosi.</p>
+        <!-- Statistika -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">O'quvchilar</div>
             </div>
-            <div class="card ev3">
-                <div style="font-size: 45px; margin-bottom: 10px;">🤖</div>
-                <h3>Mindstorms EV3</h3>
-                <p>Murakkab robotlar va mantiqiy dasturlash.</p>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Robotlar</div>
             </div>
-            <div class="card arduino">
-                <div style="font-size: 45px; margin-bottom: 10px;">🔋</div>
-                <h3>Arduino Basic</h3>
-                <p>Elektronika va sxemalar yaratish san'ati.</p>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Tajribali ustozlar</div>
             </div>
-            <div class="card modeling">
-                <div style="font-size: 45px; margin-bottom: 10px;">📐</div>
-                <h3>3D Modelling</h3>
-                <p>Virtual modellarni hayotga tatbiq eting.</p>
+            <div class="stat-item">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Loyihalar</div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        &copy; 2026 Da Vinci School | Biz bilan kelajakni bugun yarating!
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Da Vinci School. Barcha huquqlar himoyalangan. | Robototexnika kurslari</p>
+        </footer>
+    </div>
 
+    <!-- Qo'shimcha interaktiv animatsiya -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.course-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const angleX = (y - centerY) / 15;
+                    const angleY = (centerX - x) / 15;
+                    
+                    this.style.transform = `perspective(1200px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-25px) scale(1.03)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                });
+            });
+
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3'];
+            let colorIndex = 0;
+            
+            setInterval(() => {
+                document.querySelector('.hero h1').style.textShadow = `0 0 60px ${colors[colorIndex]}`;
+                colorIndex = (colorIndex + 1) % colors.length;
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
